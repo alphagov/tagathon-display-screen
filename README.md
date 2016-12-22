@@ -22,11 +22,12 @@ You can create the client ID and client secret using the [Google developer
 console][1]. You need to generate the refresh token; there is a [short Ruby
 script to create one for you][2].
 
-You can get the spreadsheet ID from the sharing URL for the spreadsheet:
+You can get the spreadsheet ID from the sharing URL for the spreadsheet, for
+example:
 
-`https://docs.google.com/spreadsheets/d/**14iKMlhtBwpjjM1qNBmdPL7Lexsb7Af9PbokGRXEOwrQ**/edit`
+`14iKMlhtBwpjjM1qNBmdPL7Lexsb7Af9PbokGRXEOwrQ`
 
-You also need the range in the spreadsheet to get the statistics from; for
+You also need the range in the spreadsheet to get the statistics from, for
 example:
 
 `Statistics!A1:B12`
