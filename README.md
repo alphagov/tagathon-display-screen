@@ -41,6 +41,9 @@ Once you have completed the setup, you can start the server by running:
 CLIENT_ID=... CLIENT_SECRET=... REFRESH_TOKEN=... SPREADSHEET_ID=... SPREADSHEET_RANGE=... ruby ./server.rb
 ```
 
+If you set the `USERNAME` and `PASSWORD` environment variables then the
+app will be protected with HTTP Basic Auth.
+
 [1]: https://console.developers.google.com/
 [2]: generate_refresh_token.rb
 
