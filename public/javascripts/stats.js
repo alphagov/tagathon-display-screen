@@ -24,7 +24,7 @@ var stats = {
   },
 
   html_stat_box: function(stat_name, stat_value) {
-    return "<div class=\"col-md-3\"><h2>" + stat_value + "</h2><br>" + stat_name + "</div>";
+    return "<div class=\"col-md-3\"><h2>" + stat_value + "</h2><p>" + stat_name + "</p></div>";
   },
 
   init: function() {
