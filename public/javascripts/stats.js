@@ -1,30 +1,43 @@
 "use strict";
 
 var stats = {
-  endpoint: function() {
-    return "/realtime"
-  },
-
   refresh: function() {
-    $.get(stats.endpoint(), function(data) {
+    $.get("/api/statistics", function(data) {
       stats.display(data);
     });
   },
 
   display: function(data) {
-    var display_stats = [];
+    var stats_display = [];
+    var stats_group = [];
+    var number_of_teams = data.length;
 
-    for (var property in data) {
-      if (data.hasOwnProperty(property)) {
-        display_stats.push(stats.html_stat_box(property, data[property]));
+    for (var i = 0; i < number_of_teams; i++) {
+      stats_display.push(stats.html_stats_group_name(data[i]["group_name"]));
+
+      for (var property in data[i]["stats"]) {
+        if (data[i]["stats"].hasOwnProperty(property)) {
+          stats_group.push(stats.html_stat_box(property, data[i]["stats"][property]));
+        }
       }
+
+      stats_display.push(stats.html_stats_group_box(stats_group));
+      stats_group = [];
     }
 
-    $("#stats").html(display_stats.join(""));
+    $("#stats").html(stats_display.join(""));
+  },
+
+  html_stats_group_name: function(stats_group_name) {
+    return "<div class=\"row\"><div class=\"col-md-12\"><h2>" + stats_group_name + "</h2></div></div>";
+  },
+
+  html_stats_group_box: function(stats_group) {
+    return "<div class=\"row\">" + stats_group.join("") + "</div>";
   },
 
   html_stat_box: function(stat_name, stat_value) {
-    return "<div class=\"col-md-3\"><h2>" + stat_value + "</h2><p>" + stat_name + "</p></div>";
+    return "<div class=\"col-md-3\"><h3>" + stat_value + "</h3><p>" + stat_name + "</p></div>";
   },
 
   init: function() {
