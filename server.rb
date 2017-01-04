@@ -12,7 +12,7 @@ set :bind, '0.0.0.0'
 set :protection, except: :frame_options
 
 if ENV['USERNAME'] && ENV['PASSWORD']
-  use Rack::Auth::Basic, 'Demo area' do |user, pass|
+  use Rack::Auth::Basic, 'Tagathon Display Screen' do |user, pass|
     user == ENV['USERNAME'] && pass == ENV['PASSWORD']
   end
 end
