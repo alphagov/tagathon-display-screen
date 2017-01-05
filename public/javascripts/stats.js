@@ -6,6 +6,8 @@ var stats = {
     $.get("/api/statistics", function(data) {
       stats.display(data);
 
+      // Remove slick if this isn't the first refresh
+      // since it will be re-added later on the new content.
       if (!init) {
         $("#stats").slick("unslick");
       }
@@ -18,6 +20,7 @@ var stats = {
         swipe: false,
         touchMove: false
       });
+
       stats.loading_overlay(false);
     });
   },
