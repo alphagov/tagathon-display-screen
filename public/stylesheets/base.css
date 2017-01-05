@@ -26,12 +26,18 @@ body {
   margin: auto;
 }
 
-#stats h3 {
+#totals {
+  margin-bottom: 50px;
+}
+
+#stats h3,
+#totals h3 {
   font-size: 600%;
   font-weight: bold;
 }
 
-#stats p {
+#stats p,
+#totals p {
   font-size: 200%;
   font-weight: bold;
 }

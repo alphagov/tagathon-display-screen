@@ -27,19 +27,22 @@ var stats = {
 
   display: function(data) {
     var stats_display = [];
+    var totals_display = "";
     var stats_group = [];
-    var number_of_teams = data.length;
+    var totals_group = [];
+    var number_of_teams = data["stats"].length;
 
+    // Stats by group
     for (var i = 0; i < number_of_teams; i++) {
-      for (var property in data[i]["stats"]) {
-        if (data[i]["stats"].hasOwnProperty(property)) {
-          stats_group.push(stats.html_stat_box(property, data[i]["stats"][property]));
+      for (var property in data["stats"][i]["stats"]) {
+        if (data["stats"][i]["stats"].hasOwnProperty(property)) {
+          stats_group.push(stats.html_stat_box(property, data["stats"][i]["stats"][property]));
         }
       }
 
       stats_display.push(
         stats.html_stats_slide(
-          stats.html_stats_group_name(data[i]["group_name"]),
+          stats.html_stats_group_name(data["stats"][i]["group_name"]),
           stats.html_stats_group_box(stats_group)
         )
       );
@@ -47,7 +50,17 @@ var stats = {
       stats_group = [];
     }
 
+    // Totals
+    for (var property in data["totals"]) {
+      if (data["totals"].hasOwnProperty(property)) {
+        totals_group.push(stats.html_stat_box(property, data["totals"][property]));
+      }
+    }
+
+    totals_display = stats.html_stats_group_box(totals_group)
+
     $("#stats").html(stats_display.join(""));
+    $("#totals").html(totals_display);
   },
 
   html_stats_slide: function(stats_group_name, stats_group) {

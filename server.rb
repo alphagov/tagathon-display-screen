@@ -58,10 +58,13 @@ get '/api/statistics' do
     end
   end
 
-  # Push last group of stats to the main array
-  add_stats_to_array
+  # Push last group of stats to a separate array
+  total_stats = @stats_group
 
-  JSON.generate(@stats)
+  JSON.generate({
+    stats: @stats,
+    totals: total_stats
+  })
 end
 
 def get_token
