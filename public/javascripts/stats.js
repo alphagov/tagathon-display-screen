@@ -2,8 +2,10 @@
 
 var stats = {
   refresh: function() {
+    stats.loading_overlay(true);
     $.get("/api/statistics", function(data) {
       stats.display(data);
+      stats.loading_overlay(false);
     });
   },
 
@@ -38,6 +40,16 @@ var stats = {
 
   html_stat_box: function(stat_name, stat_value) {
     return "<div class=\"col-md-3\"><h3>" + stat_value + "</h3><p>" + stat_name + "</p></div>";
+  },
+
+  loading_overlay: function(show) {
+    var loading_overlay = $("#loading");
+
+    if (show) {
+      loading_overlay.show();
+    } else {
+      loading_overlay.hide();
+    }
   },
 
   init: function() {
