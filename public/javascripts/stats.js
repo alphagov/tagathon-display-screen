@@ -94,6 +94,6 @@ var stats = {
     // Refresh every 60 seconds
     window.setInterval(stats.refresh, 60e3);
   }
-}
+};
 
 stats.init();
